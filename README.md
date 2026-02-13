@@ -6,7 +6,7 @@ Docker images for use with [blazed.sh](https://blazed.sh).
 
 ### debian
 
-A Debian-based workspace with an Ethereum node socket mounted at `/tmp/sockets/eth_rpc.sock`.
+A Debian-based workspace with an Ethereum node socket mounted at `/var/run/blazed/eth.sock`.
 
 **Features:**
 - Fish shell (default)
@@ -18,7 +18,7 @@ A Debian-based workspace with an Ethereum node socket mounted at `/tmp/sockets/e
 ```bash
 docker run -d \
   -e SSH_AUTHORIZED_KEY="ssh-rsa AAAA..." \
-  -v /path/to/eth_rpc.sock:/tmp/sockets/eth_rpc.sock \
+  -v /path/to/eth_rpc.sock:/var/run/blazed/eth.sock \
   -p 2222:22 \
   ghcr.io/blazed-sh/images/debian
 ```

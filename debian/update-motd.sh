@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOCKET="/tmp/sockets/eth_rpc.sock"
+SOCKET="/var/run/blazed/eth.sock"
 
 rpc_call() {
     timeout 5 bash -c "echo '{\"jsonrpc\":\"2.0\",\"method\":\"$1\",\"params\":[],\"id\":1}' | \
