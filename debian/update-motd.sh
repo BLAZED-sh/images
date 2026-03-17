@@ -1,10 +1,11 @@
 #!/bin/bash
 
-SOCKET="/var/run/blazed/eth.sock"
+RPC_URL="http://eth:8545"
 
 rpc_call() {
-    timeout 5 bash -c "echo '{\"jsonrpc\":\"2.0\",\"method\":\"$1\",\"params\":[],\"id\":1}' | \
-        socat -t 2 - UNIX-CONNECT:$SOCKET" 2>/dev/null | jq -r '.result // "N/A"' || echo "N/A"
+    curl -s --max-time 5 -X POST -H "Content-Type: application/json" \
+        -d "{\"jsonrpc\":\"2.0\",\"method\":\"$1\",\"params\":[],\"id\":1}" \
+        "$RPC_URL" 2>/dev/null | jq -r '.result // "N/A"' || echo "N/A"
 }
 
 # Fetch data (each call has 5s timeout)
@@ -42,6 +43,6 @@ cat << EOF
   Gas Price:     $GAS_GWEI Gwei
   Peers:         $PEERS
   -----------------------------------------------------
-  Socket: /tmp/sockets/eth_rpc.sock
+  RPC: http://eth:8545
 
 EOF
