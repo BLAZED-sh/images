@@ -36,4 +36,7 @@ fi
 echo "==========================================="
 echo ""
 
+# Generate fresh SSH host keys on first boot
+ssh-keygen -A
+
 exec "$@"

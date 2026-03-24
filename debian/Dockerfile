@@ -28,6 +28,8 @@ RUN useradd -m -s /usr/bin/fish user && \
     usermod -aG sudo user && \
     chsh -s /usr/bin/fish root
 
+RUN rm -f /etc/ssh/ssh_host_*
+
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /home/user/.ssh && chown user:user /home/user/.ssh
 
